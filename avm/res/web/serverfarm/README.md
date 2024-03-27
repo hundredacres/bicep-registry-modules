@@ -49,10 +49,10 @@ module serverfarm 'br/public:avm/res/web/serverfarm:<version>' = {
     name: 'wsfmin001'
     sku: {
       capacity: 3
-      family: 'P'
-      name: 'P1v3'
-      size: 'P1v3'
-      tier: 'Premium'
+      family: 'F'
+      name: 'F1'
+      size: 'F1'
+      tier: 'Free'
     }
     // Non-required parameters
     location: '<location>'
@@ -79,10 +79,10 @@ module serverfarm 'br/public:avm/res/web/serverfarm:<version>' = {
     "sku": {
       "value": {
         "capacity": 3,
-        "family": "P",
-        "name": "P1v3",
-        "size": "P1v3",
-        "tier": "Premium"
+        "family": "F",
+        "name": "F1",
+        "size": "F1",
+        "tier": "Free"
       }
     },
     // Non-required parameters
