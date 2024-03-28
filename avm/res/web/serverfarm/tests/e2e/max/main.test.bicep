@@ -68,10 +68,10 @@ module testDeployment '../../../main.bicep' = [
       name: '${namePrefix}${serviceShort}001'
       location: tempLocation
       sku: {
-        name: 'F1'
-        tier: 'Free'
-        size: 'F1'
-        family: 'F'
+        name: 'B1'
+        tier: 'Basic'
+        size: 'B1'
+        family: 'B'
         capacity: 3
       }
       perSiteScaling: true

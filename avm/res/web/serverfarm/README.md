@@ -113,10 +113,10 @@ module serverfarm 'br/public:avm/res/web/serverfarm:<version>' = {
     name: 'wsfmax001'
     sku: {
       capacity: 3
-      family: 'F'
-      name: 'F1'
-      size: 'F1'
-      tier: 'Free'
+      family: 'B'
+      name: 'B1'
+      size: 'B1'
+      tier: 'Basic'
     }
     // Non-required parameters
     diagnosticSettings: [
@@ -186,10 +186,10 @@ module serverfarm 'br/public:avm/res/web/serverfarm:<version>' = {
     "sku": {
       "value": {
         "capacity": 3,
-        "family": "F",
-        "name": "F1",
-        "size": "F1",
-        "tier": "Free"
+        "family": "B",
+        "name": "B1",
+        "size": "B1",
+        "tier": "Basic"
       }
     },
     // Non-required parameters
