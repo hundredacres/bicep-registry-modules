@@ -49,6 +49,9 @@ param azureMonitorAlertSettingsAlertsForAllJobFailures string = 'Enabled'
 @description('Optional. List of all backup policies.')
 param backupPolicies array = []
 
+@description('Optional. List of all backup instances.')
+param backupInstances array = []
+
 @description('Optional. Security settings for the backup vault.')
 param securitySettings object = {}
 
@@ -160,6 +163,17 @@ resource backupVault_lock 'Microsoft.Authorization/locks@2020-05-01' = if (!empt
   }
   scope: backupVault
 }
+
+module backupVault_backupInstances 'backup-instance/main.bicep' = [
+  for (backupInstance, index) in backupInstances: {
+    name: '${uniqueString(deployment().name, location)}-BV-BackupInstance-${index}'
+    params: {
+      name: backupInstance.name
+      backupVaultName: backupVault.name
+      properties: backupInstance.properties
+    }
+  }
+]
 
 resource backupVault_roleAssignments 'Microsoft.Authorization/roleAssignments@2022-04-01' = [
   for (roleAssignment, index) in (formattedRoleAssignments ?? []): {
