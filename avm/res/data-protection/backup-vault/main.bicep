@@ -120,7 +120,7 @@ resource avmTelemetry 'Microsoft.Resources/deployments@2024-03-01' = if (enableT
   }
 }
 
-resource backupVault 'Microsoft.DataProtection/backupVaults@2023-05-01' = {
+resource backupVault 'Microsoft.DataProtection/backupVaults@2024-04-01' = {
   name: name
   location: location
   tags: tags
@@ -174,6 +174,17 @@ resource backupVault_lock 'Microsoft.Authorization/locks@2020-05-01' = if (!empt
   }
   scope: backupVault
 }
+
+module backupVault_backupInstances 'backup-instance/main.bicep' = [
+  for (backupInstance, index) in backupInstances: {
+    name: '${uniqueString(deployment().name, location)}-BV-BackupInstance-${index}'
+    params: {
+      name: backupInstance.name
+      backupVaultName: backupVault.name
+      properties: backupInstance.properties
+    }
+  }
+]
 
 resource backupVault_roleAssignments 'Microsoft.Authorization/roleAssignments@2022-04-01' = [
   for (roleAssignment, index) in (formattedRoleAssignments ?? []): {
