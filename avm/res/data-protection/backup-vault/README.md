@@ -18,6 +18,7 @@ This module deploys a Data Protection Backup Vault.
 | `Microsoft.Authorization/locks` | [2020-05-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Authorization/2020-05-01/locks) |
 | `Microsoft.Authorization/roleAssignments` | [2022-04-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Authorization/2022-04-01/roleAssignments) |
 | `Microsoft.DataProtection/backupVaults` | [2023-05-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/backupVaults) |
+| `Microsoft.DataProtection/backupVaults/backupInstances` | [2024-04-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/backupVaults/backupInstances) |
 | `Microsoft.DataProtection/backupVaults/backupPolicies` | [2023-05-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/backupVaults/backupPolicies) |
 
 ## Usage examples
@@ -549,6 +550,7 @@ module backupVault 'br/public:avm/res/data-protection/backup-vault:<version>' = 
 | Parameter | Type | Description |
 | :-- | :-- | :-- |
 | [`azureMonitorAlertSettingsAlertsForAllJobFailures`](#parameter-azuremonitoralertsettingsalertsforalljobfailures) | string | Settings for Azure Monitor based alerts for job failures. |
+| [`backupInstances`](#parameter-backupinstances) | array | List of all backup instances. |
 | [`backupPolicies`](#parameter-backuppolicies) | array | List of all backup policies. |
 | [`dataStoreType`](#parameter-datastoretype) | string | The datastore type to use. ArchiveStore does not support ZoneRedundancy. |
 | [`enableTelemetry`](#parameter-enabletelemetry) | bool | Enable/Disable usage telemetry for module. |
@@ -582,6 +584,14 @@ Settings for Azure Monitor based alerts for job failures.
     'Enabled'
   ]
   ```
+
+### Parameter: `backupInstances`
+
+List of all backup instances.
+
+- Required: No
+- Type: array
+- Default: `[]`
 
 ### Parameter: `backupPolicies`
 

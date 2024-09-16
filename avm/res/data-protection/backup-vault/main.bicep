@@ -49,6 +49,9 @@ param azureMonitorAlertSettingsAlertsForAllJobFailures string = 'Enabled'
 @description('Optional. List of all backup policies.')
 param backupPolicies array = []
 
+@description('Optional. List of all backup instances.')
+param backupInstances array = []
+
 @description('Optional. Security settings for the backup vault.')
 param securitySettings object = {}
 
@@ -146,6 +149,17 @@ module backupVault_backupPolicies 'backup-policy/main.bicep' = [
       backupVaultName: backupVault.name
       name: backupPolicy.name
       properties: backupPolicy.properties
+    }
+  }
+]
+
+module backupVault_backupInstances 'backup-instance/main.bicep' = [
+  for (backupInstance, index) in backupInstances: {
+    name: '${uniqueString(deployment().name, location)}-BV-BackupInstance-${index}'
+    params: {
+      name: backupInstance.name
+      backupVaultName: backupVault.name
+      properties: backupInstance.properties
     }
   }
 ]

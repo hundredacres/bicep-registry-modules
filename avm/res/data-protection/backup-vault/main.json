@@ -6,7 +6,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.29.47.4906",
-      "templateHash": "1873346698253995075"
+      "templateHash": "11018321043105464443"
     },
     "name": "Data Protection Backup Vaults",
     "description": "This module deploys a Data Protection Backup Vault.",
@@ -213,6 +213,13 @@
         "description": "Optional. List of all backup policies."
       }
     },
+    "backupInstances": {
+      "type": "array",
+      "defaultValue": [],
+      "metadata": {
+        "description": "Optional. List of all backup instances."
+      }
+    },
     "securitySettings": {
       "type": "object",
       "defaultValue": {},
@@ -414,6 +421,120 @@
               "type": "string",
               "metadata": {
                 "description": "The name of the resource group the backup policy was created in."
+              },
+              "value": "[resourceGroup().name]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "backupVault"
+      ]
+    },
+    "backupVault_backupInstances": {
+      "copy": {
+        "name": "backupVault_backupInstances",
+        "count": "[length(parameters('backupInstances'))]"
+      },
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('{0}-BV-BackupInstance-{1}', uniqueString(deployment().name, parameters('location')), copyIndex())]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "name": {
+            "value": "[parameters('backupInstances')[copyIndex()].name]"
+          },
+          "backupVaultName": {
+            "value": "[parameters('name')]"
+          },
+          "properties": {
+            "value": "[parameters('backupInstances')[copyIndex()].properties]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "languageVersion": "2.0",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.29.47.4906",
+              "templateHash": "9682538848667892087"
+            },
+            "name": "Data Protection Backup Vault Backup Instance",
+            "description": "This module deploys a Data Protection Backup Vault Backup Instance.",
+            "owner": "Azure/module-maintainers"
+          },
+          "parameters": {
+            "backupVaultName": {
+              "type": "string",
+              "metadata": {
+                "description": "Required. The name of the backup vault."
+              }
+            },
+            "name": {
+              "type": "string",
+              "defaultValue": "DefaultInstance",
+              "metadata": {
+                "description": "Optional. The name of the backup instance."
+              }
+            },
+            "properties": {
+              "type": "object",
+              "defaultValue": {},
+              "metadata": {
+                "description": "Optional. The properties of the backup instance."
+              }
+            },
+            "tags": {
+              "type": "object",
+              "nullable": true,
+              "metadata": {
+                "description": "Optional. Tags of the Recovery Service Vault resource."
+              }
+            }
+          },
+          "resources": {
+            "backupVault": {
+              "existing": true,
+              "type": "Microsoft.DataProtection/backupVaults",
+              "apiVersion": "2023-05-01",
+              "name": "[parameters('backupVaultName')]"
+            },
+            "backupInstance": {
+              "type": "Microsoft.DataProtection/backupVaults/backupInstances",
+              "apiVersion": "2024-04-01",
+              "name": "[format('{0}/{1}', parameters('backupVaultName'), parameters('name'))]",
+              "tags": "[parameters('tags')]",
+              "properties": "[parameters('properties')]",
+              "dependsOn": [
+                "backupVault"
+              ]
+            }
+          },
+          "outputs": {
+            "name": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the backup instance."
+              },
+              "value": "[parameters('name')]"
+            },
+            "resourceId": {
+              "type": "string",
+              "metadata": {
+                "description": "The resource ID of the backup instance."
+              },
+              "value": "[resourceId('Microsoft.DataProtection/backupVaults/backupInstances', parameters('backupVaultName'), parameters('name'))]"
+            },
+            "resourceGroupName": {
+              "type": "string",
+              "metadata": {
+                "description": "The name of the resource group the backup instance was created in."
               },
               "value": "[resourceGroup().name]"
             }
