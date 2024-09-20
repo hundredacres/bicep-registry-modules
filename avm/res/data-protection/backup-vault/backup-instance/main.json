@@ -5,8 +5,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.29.47.4906",
-      "templateHash": "9682538848667892087"
+      "version": "0.30.3.12046",
+      "templateHash": "11644628817442242468"
     },
     "name": "Data Protection Backup Vault Backup Instance",
     "description": "This module deploys a Data Protection Backup Vault Backup Instance.",

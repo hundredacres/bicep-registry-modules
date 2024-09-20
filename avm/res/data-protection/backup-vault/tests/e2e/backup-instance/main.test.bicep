@@ -59,50 +59,6 @@ module testDeployment '../../../main.bicep' = [
     params: {
       name: '${namePrefix}${serviceShort}001'
       location: resourceLocation
-      roleAssignments: [
-        {
-          name: 'cbc3932a-1bee-4318-ae76-d70e1ba399c8'
-          roleDefinitionIdOrName: 'Owner'
-          principalId: nestedDependencies.outputs.managedIdentityPrincipalId
-          principalType: 'ServicePrincipal'
-        }
-        {
-          name: guid('Custom seed ${namePrefix}${serviceShort}')
-          roleDefinitionIdOrName: 'b24988ac-6180-42a0-ab88-20f7382dd24c'
-          principalId: nestedDependencies.outputs.managedIdentityPrincipalId
-          principalType: 'ServicePrincipal'
-        }
-        {
-          roleDefinitionIdOrName: subscriptionResourceId(
-            'Microsoft.Authorization/roleDefinitions',
-            'acdd72a7-3385-48ef-bd42-f606fba81ae7'
-          )
-          principalId: nestedDependencies.outputs.managedIdentityPrincipalId
-          principalType: 'ServicePrincipal'
-        }
-        {
-          roleDefinitionIdOrName: subscriptionResourceId(
-            'Microsoft.Authorization/roleDefinitions',
-            '3e5e47e6-65f7-47ef-90b5-e5dd4d455f24'
-          )
-          principalId: reference(
-            resourceId('Microsoft.DataProtection/backupVaults', '${namePrefix}${serviceShort}001'),
-            '2023-05-01',
-            'Full'
-          ).identity.principalId
-        }
-        {
-          roleDefinitionIdOrName: subscriptionResourceId(
-            'Microsoft.Authorization/roleDefinitions',
-            '7efff54f-a5b4-42b5-a1c5-5411624893ce'
-          )
-          principalId: reference(
-            resourceId('Microsoft.DataProtection/backupVaults', '${namePrefix}${serviceShort}001'),
-            '2023-05-01',
-            'Full'
-          ).identity.principalId
-        }
-      ]
       azureMonitorAlertSettingsAlertsForAllJobFailures: 'Disabled'
       managedIdentities: {
         systemAssigned: true

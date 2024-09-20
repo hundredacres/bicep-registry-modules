@@ -151,33 +151,6 @@ module backupVault 'br/public:avm/res/data-protection/backup-vault:<version>' = 
     managedIdentities: {
       systemAssigned: true
     }
-    roleAssignments: [
-      {
-        name: 'cbc3932a-1bee-4318-ae76-d70e1ba399c8'
-        principalId: '<principalId>'
-        principalType: 'ServicePrincipal'
-        roleDefinitionIdOrName: 'Owner'
-      }
-      {
-        name: '<name>'
-        principalId: '<principalId>'
-        principalType: 'ServicePrincipal'
-        roleDefinitionIdOrName: 'b24988ac-6180-42a0-ab88-20f7382dd24c'
-      }
-      {
-        principalId: '<principalId>'
-        principalType: 'ServicePrincipal'
-        roleDefinitionIdOrName: '<roleDefinitionIdOrName>'
-      }
-      {
-        principalId: '<principalId>'
-        roleDefinitionIdOrName: '<roleDefinitionIdOrName>'
-      }
-      {
-        principalId: '<principalId>'
-        roleDefinitionIdOrName: '<roleDefinitionIdOrName>'
-      }
-    ]
     tags: {
       Environment: 'Non-Prod'
       'hidden-title': 'This is visible in the resource name'
@@ -316,35 +289,6 @@ module backupVault 'br/public:avm/res/data-protection/backup-vault:<version>' = 
       "value": {
         "systemAssigned": true
       }
-    },
-    "roleAssignments": {
-      "value": [
-        {
-          "name": "cbc3932a-1bee-4318-ae76-d70e1ba399c8",
-          "principalId": "<principalId>",
-          "principalType": "ServicePrincipal",
-          "roleDefinitionIdOrName": "Owner"
-        },
-        {
-          "name": "<name>",
-          "principalId": "<principalId>",
-          "principalType": "ServicePrincipal",
-          "roleDefinitionIdOrName": "b24988ac-6180-42a0-ab88-20f7382dd24c"
-        },
-        {
-          "principalId": "<principalId>",
-          "principalType": "ServicePrincipal",
-          "roleDefinitionIdOrName": "<roleDefinitionIdOrName>"
-        },
-        {
-          "principalId": "<principalId>",
-          "roleDefinitionIdOrName": "<roleDefinitionIdOrName>"
-        },
-        {
-          "principalId": "<principalId>",
-          "roleDefinitionIdOrName": "<roleDefinitionIdOrName>"
-        }
-      ]
     },
     "tags": {
       "value": {
