@@ -130,14 +130,15 @@ module testDeployment '../../../main.bicep' = [
           name: nestedDependencies.outputs.computeDiskName
           properties: {
             objectType: 'BackupInstance'
+            friendlyName: nestedDependencies.outputs.computeDiskName
             dataSourceInfo: {
               objectType: 'DataSource'
-              resourceId: nestedDependencies.outputs.computeDiskId
+              resourceID: nestedDependencies.outputs.computeDiskId
               resourceName: nestedDependencies.outputs.computeDiskName
               resourceType: resourceType
               resourceUri: nestedDependencies.outputs.computeDiskId
               resourceLocation: resourceLocation
-              daraSourceType: dataSourceType
+              datasourceType: dataSourceType
             }
             policyInfo: {
               name: 'DefaultPolicy'

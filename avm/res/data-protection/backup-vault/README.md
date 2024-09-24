@@ -17,6 +17,7 @@ This module deploys a Data Protection Backup Vault.
 | :-- | :-- |
 | `Microsoft.Authorization/locks` | [2020-05-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Authorization/2020-05-01/locks) |
 | `Microsoft.Authorization/roleAssignments` | [2022-04-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Authorization/2022-04-01/roleAssignments) |
+| `Microsoft.Authorization/roleAssignments` | [2020-04-01-preview](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Authorization/roleAssignments) |
 | `Microsoft.DataProtection/backupVaults` | [2024-04-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/backupVaults) |
 | `Microsoft.DataProtection/backupVaults/backupInstances` | [2024-04-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/backupVaults/backupInstances) |
 | `Microsoft.DataProtection/backupVaults/backupPolicies` | [2023-05-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/backupVaults/backupPolicies) |
@@ -56,14 +57,15 @@ module backupVault 'br/public:avm/res/data-protection/backup-vault:<version>' = 
         name: '<name>'
         properties: {
           dataSourceInfo: {
-            daraSourceType: '<daraSourceType>'
+            datasourceType: '<datasourceType>'
             objectType: 'DataSource'
-            resourceId: '<resourceId>'
+            resourceID: '<resourceID>'
             resourceLocation: '<resourceLocation>'
             resourceName: '<resourceName>'
             resourceType: '<resourceType>'
             resourceUri: '<resourceUri>'
           }
+          friendlyName: '<friendlyName>'
           objectType: 'BackupInstance'
           policyInfo: {
             name: 'DefaultPolicy'
@@ -186,14 +188,15 @@ module backupVault 'br/public:avm/res/data-protection/backup-vault:<version>' = 
           "name": "<name>",
           "properties": {
             "dataSourceInfo": {
-              "daraSourceType": "<daraSourceType>",
+              "datasourceType": "<datasourceType>",
               "objectType": "DataSource",
-              "resourceId": "<resourceId>",
+              "resourceID": "<resourceID>",
               "resourceLocation": "<resourceLocation>",
               "resourceName": "<resourceName>",
               "resourceType": "<resourceType>",
               "resourceUri": "<resourceUri>"
             },
+            "friendlyName": "<friendlyName>",
             "objectType": "BackupInstance",
             "policyInfo": {
               "name": "DefaultPolicy",

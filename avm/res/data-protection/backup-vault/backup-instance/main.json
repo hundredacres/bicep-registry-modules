@@ -6,7 +6,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.30.3.12046",
-      "templateHash": "11644628817442242468"
+      "templateHash": "16925298510428937348"
     },
     "name": "Data Protection Backup Vault Backup Instance",
     "description": "This module deploys a Data Protection Backup Vault Backup Instance.",
@@ -41,6 +41,12 @@
       }
     }
   },
+  "variables": {
+    "roleDefinitionIdForDisk": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '3e5e47e6-65f7-47ef-90b5-e5dd4d455f24')]",
+    "roleDefinitionIdForSnapshotRG": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '7efff54f-a5b4-42b5-a1c5-5411624893ce')]",
+    "roleNameGuidForDisk": "[guid(resourceGroup().id, variables('roleDefinitionIdForDisk'), resourceId('Microsoft.DataProtection/backupVaults', parameters('backupVaultName')))]",
+    "roleNameGuidForSnapshotRG": "[guid(resourceGroup().id, variables('roleDefinitionIdForSnapshotRG'), resourceId('Microsoft.DataProtection/backupVaults', parameters('backupVaultName')))]"
+  },
   "resources": {
     "backupVault": {
       "existing": true,
@@ -54,6 +60,32 @@
       "name": "[format('{0}/{1}', parameters('backupVaultName'), parameters('name'))]",
       "tags": "[parameters('tags')]",
       "properties": "[parameters('properties')]",
+      "dependsOn": [
+        "backupVault"
+      ]
+    },
+    "roleAssignmentForDisk": {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2020-04-01-preview",
+      "name": "[variables('roleNameGuidForDisk')]",
+      "properties": {
+        "roleDefinitionId": "[variables('roleDefinitionIdForDisk')]",
+        "principalId": "[reference(resourceId('Microsoft.DataProtection/backupVaults', parameters('backupVaultName')), '2024-04-01', 'Full').identity.principalId]",
+        "principalType": "ServicePrincipal"
+      },
+      "dependsOn": [
+        "backupVault"
+      ]
+    },
+    "roleAssignmentForSnapshotRG": {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2020-04-01-preview",
+      "name": "[variables('roleNameGuidForSnapshotRG')]",
+      "properties": {
+        "roleDefinitionId": "[variables('roleDefinitionIdForSnapshotRG')]",
+        "principalId": "[reference(resourceId('Microsoft.DataProtection/backupVaults', parameters('backupVaultName')), '2024-04-01', 'Full').identity.principalId]",
+        "principalType": "ServicePrincipal"
+      },
       "dependsOn": [
         "backupVault"
       ]
