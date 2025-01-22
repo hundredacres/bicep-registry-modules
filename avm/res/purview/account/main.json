@@ -6,7 +6,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.32.4.45862",
-      "templateHash": "5690262690202652451"
+      "templateHash": "1953652720609346554"
     },
     "name": "Purview Accounts",
     "description": "This module deploys a Purview Account."
@@ -502,6 +502,24 @@
         "description": "Optional. The managed identity definition for this resource."
       }
     },
+    "accountSku": {
+      "type": "string",
+      "defaultValue": "Standard",
+      "allowedValues": [
+        "Free",
+        "Standard"
+      ],
+      "metadata": {
+        "description": "Optional. The SKU of the account."
+      }
+    },
+    "accountSkuCapacity": {
+      "type": "int",
+      "defaultValue": 1,
+      "metadata": {
+        "description": "Optional. The capacity of the SKU."
+      }
+    },
     "managedEventHubState": {
       "type": "string",
       "defaultValue": "Enabled",
@@ -645,7 +663,7 @@
     },
     "account": {
       "type": "Microsoft.Purview/accounts",
-      "apiVersion": "2021-12-01",
+      "apiVersion": "2024-04-01-preview",
       "name": "[parameters('name')]",
       "location": "[parameters('location')]",
       "tags": "[parameters('tags')]",
@@ -656,6 +674,10 @@
         "managedResourceGroupName": "[parameters('managedResourceGroupName')]",
         "managedResourcesPublicNetworkAccess": "[parameters('managedResourcesPublicNetworkAccess')]",
         "publicNetworkAccess": "[parameters('publicNetworkAccess')]"
+      },
+      "sku": {
+        "name": "[parameters('accountSku')]",
+        "capacity": "[parameters('accountSkuCapacity')]"
       }
     },
     "account_lock": {
@@ -4593,7 +4615,7 @@
       "metadata": {
         "description": "The location the resource was deployed into."
       },
-      "value": "[reference('account', '2021-12-01', 'full').location]"
+      "value": "[reference('account', '2024-04-01-preview', 'full').location]"
     },
     "managedResourceGroupName": {
       "type": "string",
@@ -4628,7 +4650,7 @@
       "metadata": {
         "description": "The principal ID of the system assigned identity."
       },
-      "value": "[coalesce(tryGet(tryGet(reference('account', '2021-12-01', 'full'), 'identity'), 'principalId'), '')]"
+      "value": "[coalesce(tryGet(tryGet(reference('account', '2024-04-01-preview', 'full'), 'identity'), 'principalId'), '')]"
     },
     "accountPrivateEndpoints": {
       "type": "array",

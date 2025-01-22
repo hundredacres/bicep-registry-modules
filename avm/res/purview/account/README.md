@@ -20,7 +20,7 @@ This module deploys a Purview Account.
 | `Microsoft.Insights/diagnosticSettings` | [2021-05-01-preview](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Insights/2021-05-01-preview/diagnosticSettings) |
 | `Microsoft.Network/privateEndpoints` | [2023-11-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Network/2023-11-01/privateEndpoints) |
 | `Microsoft.Network/privateEndpoints/privateDnsZoneGroups` | [2023-11-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Network/2023-11-01/privateEndpoints/privateDnsZoneGroups) |
-| `Microsoft.Purview/accounts` | [2021-12-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Purview/2021-12-01/accounts) |
+| `Microsoft.Purview/accounts` | [2024-04-01-preview](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Purview/2024-04-01-preview/accounts) |
 
 ## Usage examples
 
@@ -1068,6 +1068,8 @@ param tags = {
 | Parameter | Type | Description |
 | :-- | :-- | :-- |
 | [`accountPrivateEndpoints`](#parameter-accountprivateendpoints) | array | Configuration details for Purview Account private endpoints. For security reasons, it is recommended to use private endpoints whenever possible. Make sure the service property is set to 'account'. |
+| [`accountSku`](#parameter-accountsku) | string | The SKU of the account. |
+| [`accountSkuCapacity`](#parameter-accountskucapacity) | int | The capacity of the SKU. |
 | [`diagnosticSettings`](#parameter-diagnosticsettings) | array | The diagnostic settings of the service. |
 | [`enableTelemetry`](#parameter-enabletelemetry) | bool | Enable/Disable usage telemetry for module. |
 | [`eventHubPrivateEndpoints`](#parameter-eventhubprivateendpoints) | array | Configuration details for Purview Managed Event Hub namespace private endpoints. For security reasons, it is recommended to use private endpoints whenever possible. Make sure the service property is set to 'namespace'. |
@@ -1501,6 +1503,29 @@ Tags to be applied on all resources/resource groups in this deployment.
 
 - Required: No
 - Type: object
+
+### Parameter: `accountSku`
+
+The SKU of the account.
+
+- Required: No
+- Type: string
+- Default: `'Standard'`
+- Allowed:
+  ```Bicep
+  [
+    'Free'
+    'Standard'
+  ]
+  ```
+
+### Parameter: `accountSkuCapacity`
+
+The capacity of the SKU.
+
+- Required: No
+- Type: int
+- Default: `1`
 
 ### Parameter: `diagnosticSettings`
 

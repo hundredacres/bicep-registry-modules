@@ -16,6 +16,16 @@ import { managedIdentityOnlyUserAssignedType } from 'br/public:avm/utl/types/avm
 @description('Optional. The managed identity definition for this resource.')
 param managedIdentities managedIdentityOnlyUserAssignedType?
 
+@description('Optional. The SKU of the account.')
+@allowed([
+  'Free'
+  'Standard'
+])
+param accountSku string = 'Standard'
+
+@description('Optional. The capacity of the SKU.')
+param accountSkuCapacity int = 1
+
 @description('Optional. The state of the managed Event Hub.')
 @allowed([
   'Enabled'
@@ -129,7 +139,7 @@ resource avmTelemetry 'Microsoft.Resources/deployments@2024-03-01' = if (enableT
   }
 }
 
-resource account 'Microsoft.Purview/accounts@2021-12-01' = {
+resource account 'Microsoft.Purview/accounts@2024-04-01-preview' = {
   name: name
   location: location
   tags: tags
@@ -140,6 +150,10 @@ resource account 'Microsoft.Purview/accounts@2021-12-01' = {
     managedResourceGroupName: managedResourceGroupName
     managedResourcesPublicNetworkAccess: managedResourcesPublicNetworkAccess
     publicNetworkAccess: publicNetworkAccess
+  }
+  sku: {
+    name: accountSku
+    capacity: accountSkuCapacity
   }
 }
 
