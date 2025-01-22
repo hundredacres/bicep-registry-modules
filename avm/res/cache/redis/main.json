@@ -6,7 +6,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.32.4.45862",
-      "templateHash": "3777530971909273110"
+      "templateHash": "1248105324411141232"
     },
     "name": "Redis Cache",
     "description": "This module deploys a Redis Cache."
@@ -1821,11 +1821,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.32.4.45862",
-<<<<<<< HEAD
-              "templateHash": "3113734842268106241"
-=======
               "templateHash": "9818219089257499387"
->>>>>>> 9e9b91252aa710274e8795117741f42ff4763540
             },
             "name": "Redis Cache Linked Servers",
             "description": "This module connects a primary and secondary Redis Cache together for geo-replication."
