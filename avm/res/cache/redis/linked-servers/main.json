@@ -6,11 +6,10 @@
     "_generator": {
       "name": "bicep",
       "version": "0.32.4.45862",
-      "templateHash": "3113734842268106241"
+      "templateHash": "9818219089257499387"
     },
     "name": "Redis Cache Linked Servers",
-    "description": "This module connects a primary and secondary Redis Cache together for geo-replication.",
-    "owner": "Azure/module-maintainers"
+    "description": "This module connects a primary and secondary Redis Cache together for geo-replication."
   },
   "parameters": {
     "redisCacheName": {
