@@ -25,8 +25,8 @@ The following section provides usage examples for the module, which were used to
 >**Note**: To reference the module, please use the following syntax `br/public:avm/res/security-insights/onboarding-states:<version>`.
 
 - [Using only defaults](#example-1-using-only-defaults)
-- [Max](#example-2-max)
-- [Waf-Aligned](#example-3-waf-aligned)
+- [Using large parameter set](#example-2-using-large-parameter-set)
+- [WAF-aligned](#example-3-waf-aligned)
 
 ### Example 1: _Using only defaults_
 
@@ -92,7 +92,10 @@ param location = '<location>'
 </details>
 <p>
 
-### Example 2: _Max_
+### Example 2: _Using large parameter set_
+
+This instance deploys the module with most of its features enabled.
+
 
 <details>
 
@@ -106,7 +109,6 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
     workspaceResourceId: '<workspaceResourceId>'
     // Non-required parameters
     location: '<location>'
-    name: 'siomax001'
   }
 }
 ```
@@ -130,9 +132,6 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
     // Non-required parameters
     "location": {
       "value": "<location>"
-    },
-    "name": {
-      "value": "siomax001"
     }
   }
 }
@@ -152,13 +151,15 @@ using 'br/public:avm/res/security-insights/onboarding-states:<version>'
 param workspaceResourceId = '<workspaceResourceId>'
 // Non-required parameters
 param location = '<location>'
-param name = 'siomax001'
 ```
 
 </details>
 <p>
 
-### Example 3: _Waf-Aligned_
+### Example 3: _WAF-aligned_
+
+This instance deploys the module in alignment with the best-practices of the Well-Architected Framework.
+
 
 <details>
 
@@ -172,7 +173,6 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
     workspaceResourceId: '<workspaceResourceId>'
     // Non-required parameters
     location: '<location>'
-    name: 'sioswaf001'
   }
 }
 ```
@@ -196,9 +196,6 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
     // Non-required parameters
     "location": {
       "value": "<location>"
-    },
-    "name": {
-      "value": "sioswaf001"
     }
   }
 }
@@ -218,7 +215,6 @@ using 'br/public:avm/res/security-insights/onboarding-states:<version>'
 param workspaceResourceId = '<workspaceResourceId>'
 // Non-required parameters
 param location = '<location>'
-param name = 'sioswaf001'
 ```
 
 </details>
