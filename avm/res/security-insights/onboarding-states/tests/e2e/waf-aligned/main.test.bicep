@@ -1,5 +1,8 @@
 targetScope = 'subscription'
 
+metadata name = 'WAF-aligned'
+metadata description = 'This instance deploys the module in alignment with the best-practices of the Well-Architected Framework.'
+
 // ========== //
 // Parameters //
 // ========== //
@@ -48,7 +51,6 @@ module testDeployment '../../../main.bicep' = [
     scope: resourceGroup
     name: '${uniqueString(deployment().name, resourceLocation)}-test-${serviceShort}-${iteration}'
     params: {
-      name: '${namePrefix}${serviceShort}001'
       workspaceResourceId: nestedDependencies.outputs.workspaceResourceId
       location: resourceLocation
     }

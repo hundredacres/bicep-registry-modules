@@ -8,6 +8,7 @@ This module deploys Security Insights (Microsoft Sentinel) instance and its reso
 - [Usage examples](#Usage-examples)
 - [Parameters](#Parameters)
 - [Outputs](#Outputs)
+- [Data Collection](#Data-Collection)
 
 ## Resource Types
 
@@ -24,7 +25,7 @@ The following section provides usage examples for the module, which were used to
 >**Note**: To reference the module, please use the following syntax `br/public:avm/res/security-insights/onboarding-states:<version>`.
 
 - [Using only defaults](#example-1-using-only-defaults)
-- [Using large parameter set](#example-2-using-large-parameter-set)
+- [Max](#example-2-max)
 - [Waf-Aligned](#example-3-waf-aligned)
 
 ### Example 1: _Using only defaults_
@@ -41,7 +42,6 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
   name: 'onboardingStatesDeployment'
   params: {
     // Required parameters
-    name: 'siomin001'
     workspaceResourceId: '<workspaceResourceId>'
     // Non-required parameters
     location: '<location>'
@@ -62,9 +62,6 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
   "contentVersion": "1.0.0.0",
   "parameters": {
     // Required parameters
-    "name": {
-      "value": "siomin001"
-    },
     "workspaceResourceId": {
       "value": "<workspaceResourceId>"
     },
@@ -87,7 +84,6 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
 using 'br/public:avm/res/security-insights/onboarding-states:<version>'
 
 // Required parameters
-param name = 'siomin001'
 param workspaceResourceId = '<workspaceResourceId>'
 // Non-required parameters
 param location = '<location>'
@@ -96,10 +92,7 @@ param location = '<location>'
 </details>
 <p>
 
-### Example 2: _Using large parameter set_
-
-This instance deploys the module with most of its features enabled.
-
+### Example 2: _Max_
 
 <details>
 
@@ -110,11 +103,10 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
   name: 'onboardingStatesDeployment'
   params: {
     // Required parameters
-    name: 'siomax001'
     workspaceResourceId: '<workspaceResourceId>'
     // Non-required parameters
-    enableDefaultTelemetry: true
     location: '<location>'
+    name: 'siomax001'
   }
 }
 ```
@@ -132,18 +124,15 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
   "contentVersion": "1.0.0.0",
   "parameters": {
     // Required parameters
-    "name": {
-      "value": "siomax001"
-    },
     "workspaceResourceId": {
       "value": "<workspaceResourceId>"
     },
     // Non-required parameters
-    "enableDefaultTelemetry": {
-      "value": true
-    },
     "location": {
       "value": "<location>"
+    },
+    "name": {
+      "value": "siomax001"
     }
   }
 }
@@ -160,11 +149,10 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
 using 'br/public:avm/res/security-insights/onboarding-states:<version>'
 
 // Required parameters
-param name = 'siomax001'
 param workspaceResourceId = '<workspaceResourceId>'
 // Non-required parameters
-param enableDefaultTelemetry = true
 param location = '<location>'
+param name = 'siomax001'
 ```
 
 </details>
@@ -181,10 +169,10 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
   name: 'onboardingStatesDeployment'
   params: {
     // Required parameters
-    name: 'sioswaf001'
     workspaceResourceId: '<workspaceResourceId>'
     // Non-required parameters
     location: '<location>'
+    name: 'sioswaf001'
   }
 }
 ```
@@ -202,15 +190,15 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
   "contentVersion": "1.0.0.0",
   "parameters": {
     // Required parameters
-    "name": {
-      "value": "sioswaf001"
-    },
     "workspaceResourceId": {
       "value": "<workspaceResourceId>"
     },
     // Non-required parameters
     "location": {
       "value": "<location>"
+    },
+    "name": {
+      "value": "sioswaf001"
     }
   }
 }
@@ -227,10 +215,10 @@ module onboardingStates 'br/public:avm/res/security-insights/onboarding-states:<
 using 'br/public:avm/res/security-insights/onboarding-states:<version>'
 
 // Required parameters
-param name = 'sioswaf001'
 param workspaceResourceId = '<workspaceResourceId>'
 // Non-required parameters
 param location = '<location>'
+param name = 'sioswaf001'
 ```
 
 </details>
@@ -242,22 +230,15 @@ param location = '<location>'
 
 | Parameter | Type | Description |
 | :-- | :-- | :-- |
-| [`name`](#parameter-name) | string | Name of the Security Insights (Microsoft Sentinel) instance. |
 | [`workspaceResourceId`](#parameter-workspaceresourceid) | string | The resource ID of the Log Analytics workspace where Security Insights (Microsoft Sentinel) will be deployed. |
 
 **Optional parameters**
 
 | Parameter | Type | Description |
 | :-- | :-- | :-- |
-| [`enableDefaultTelemetry`](#parameter-enabledefaulttelemetry) | bool | Enable telemetry via a Globally Unique Identifier (GUID). |
+| [`customerManagedKey`](#parameter-customermanagedkey) | bool | Status of the CMK setting |
+| [`enableTelemetry`](#parameter-enabletelemetry) | bool | Enable/Disable usage telemetry for module. |
 | [`location`](#parameter-location) | string | Location for all resources. |
-
-### Parameter: `name`
-
-Name of the Security Insights (Microsoft Sentinel) instance.
-
-- Required: Yes
-- Type: string
 
 ### Parameter: `workspaceResourceId`
 
@@ -266,9 +247,17 @@ The resource ID of the Log Analytics workspace where Security Insights (Microsof
 - Required: Yes
 - Type: string
 
-### Parameter: `enableDefaultTelemetry`
+### Parameter: `customerManagedKey`
 
-Enable telemetry via a Globally Unique Identifier (GUID).
+Status of the CMK setting
+
+- Required: No
+- Type: bool
+- Default: `False`
+
+### Parameter: `enableTelemetry`
+
+Enable/Disable usage telemetry for module.
 
 - Required: No
 - Type: bool
@@ -290,3 +279,7 @@ Location for all resources.
 | `name` | string | The name of the deployed Security Insights (Microsoft Sentinel) instance. |
 | `resourceGroupName` | string | The resource group where the Security Insights (Microsoft Sentinel) instance is deployed. |
 | `resourceId` | string | The resource ID of the deployed Security Insights (Microsoft Sentinel) instance. |
+
+## Data Collection
+
+The software may collect information about you and your use of the software and send it to Microsoft. Microsoft may use this information to provide services and improve our products and services. You may turn off the telemetry as described in the [repository](https://aka.ms/avm/telemetry). There are also some features in the software that may enable you and Microsoft to collect data from users of your applications. If you use these features, you must comply with applicable law, including providing appropriate notices to users of your applications together with a copy of Microsoft’s privacy statement. Our privacy statement is located at <https://go.microsoft.com/fwlink/?LinkID=824704>. You can learn more about data collection and use in the help documentation and our privacy statement. Your use of the software operates as your consent to these practices.
