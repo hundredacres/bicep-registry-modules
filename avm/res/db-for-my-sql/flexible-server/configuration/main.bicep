@@ -17,7 +17,7 @@ resource flexibleServer 'Microsoft.DBforMySQL/flexibleServers@2024-10-01-preview
   name: flexibleServerName
 }
 
-resource configuration 'Microsoft.DBforMySQL/flexibleServers/configurations@2024-10-01-preview' = {
+resource configuration 'Microsoft.DBforMySQL/flexibleServers/configurations@2024-12-01-preview' = {
   name: name
   parent: flexibleServer
   properties: {
