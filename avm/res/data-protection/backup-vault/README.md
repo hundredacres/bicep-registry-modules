@@ -18,9 +18,9 @@ This module deploys a Data Protection Backup Vault.
 | :-- | :-- |
 | `Microsoft.Authorization/locks` | [2020-05-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Authorization/2020-05-01/locks) |
 | `Microsoft.Authorization/roleAssignments` | [2022-04-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.Authorization/2022-04-01/roleAssignments) |
-| `Microsoft.DataProtection/backupVaults` | [2024-04-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/2024-04-01/backupVaults) |
+| `Microsoft.DataProtection/backupVaults` | [2025-07-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/2025-07-01/backupVaults) |
 | `Microsoft.DataProtection/backupVaults/backupInstances` | [2024-04-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/2024-04-01/backupVaults/backupInstances) |
-| `Microsoft.DataProtection/backupVaults/backupPolicies` | [2024-04-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/2024-04-01/backupVaults/backupPolicies) |
+| `Microsoft.DataProtection/backupVaults/backupPolicies` | [2025-07-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/2025-07-01/backupVaults/backupPolicies) |
 
 ## Usage examples
 
@@ -1521,37 +1521,6 @@ param softDeleteSettings = {
 
 </details>
 <p>
-
-> **Note**: For AKS (Azure Kubernetes Service) backup scenarios, you can use the optional `dataSourceSetInfo` parameter in addition to or instead of `dataSourceInfo`. This is particularly useful when backing up Microsoft.ContainerService/managedClusters resources that require datasource set information.
-
-Example for AKS backup:
-```bicep
-backupInstances: [
-  {
-    name: 'myAksBackupInstance'
-    dataSourceInfo: {
-      datasourceType: 'Microsoft.ContainerService/managedClusters'
-      resourceID: '/subscriptions/xxxx/resourceGroups/myRG/providers/Microsoft.ContainerService/managedClusters/myAKS'
-      resourceLocation: 'eastus'
-      resourceName: 'myAKS'
-      resourceType: 'Microsoft.ContainerService/managedClusters'
-      resourceUri: '/subscriptions/xxxx/resourceGroups/myRG/providers/Microsoft.ContainerService/managedClusters/myAKS'
-    }
-    dataSourceSetInfo: {
-      datasourceType: 'Microsoft.ContainerService/managedClusters'
-      resourceID: '/subscriptions/xxxx/resourceGroups/myRG/providers/Microsoft.ContainerService/managedClusters/myAKS'
-      resourceLocation: 'eastus'
-      resourceName: 'myAKS'
-      resourceType: 'Microsoft.ContainerService/managedClusters'
-      resourceUri: '/subscriptions/xxxx/resourceGroups/myRG/providers/Microsoft.ContainerService/managedClusters/myAKS'
-    }
-    policyInfo: {
-      policyName: 'myAksPolicy'
-      policyParameters: {}
-    }
-  }
-]
-```
 
 ## Parameters
 

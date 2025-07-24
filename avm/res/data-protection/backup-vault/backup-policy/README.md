@@ -13,7 +13,7 @@ This module deploys a Data Protection Backup Vault Backup Policy.
 
 | Resource Type | API Version |
 | :-- | :-- |
-| `Microsoft.DataProtection/backupVaults/backupPolicies` | [2024-04-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/2024-04-01/backupVaults/backupPolicies) |
+| `Microsoft.DataProtection/backupVaults/backupPolicies` | [2025-07-01](https://learn.microsoft.com/en-us/azure/templates/Microsoft.DataProtection/2025-07-01/backupVaults/backupPolicies) |
 
 ## Parameters
 

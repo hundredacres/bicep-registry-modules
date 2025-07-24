@@ -35,6 +35,7 @@ This module deploys a Data Protection Backup Vault Backup Instance.
 
 | Parameter | Type | Description |
 | :-- | :-- | :-- |
+| [`dataSourceSetInfo`](#parameter-datasourcesetinfo) | object | Gets or sets the data source set information. |
 | [`friendlyName`](#parameter-friendlyname) | string | The friendly name of the backup instance. |
 
 ### Parameter: `dataSourceInfo`
@@ -135,6 +136,66 @@ Policy parameters for the backup instance.
 ### Parameter: `backupVaultName`
 
 The name of the parent Backup Vault. Required if the template is used in a standalone deployment.
+
+- Required: Yes
+- Type: string
+
+### Parameter: `dataSourceSetInfo`
+
+Gets or sets the data source set information.
+
+- Required: No
+- Type: object
+
+**Required parameters**
+
+| Parameter | Type | Description |
+| :-- | :-- | :-- |
+| [`datasourceType`](#parameter-datasourcesetinfodatasourcetype) | string | The data source type of the resource set. |
+| [`resourceID`](#parameter-datasourcesetinforesourceid) | string | The resource ID of the resource set. |
+| [`resourceLocation`](#parameter-datasourcesetinforesourcelocation) | string | The location of the data source set. |
+| [`resourceName`](#parameter-datasourcesetinforesourcename) | string | Unique identifier of the resource set in the context of parent. |
+| [`resourceType`](#parameter-datasourcesetinforesourcetype) | string | The resource type of the data source set. |
+| [`resourceUri`](#parameter-datasourcesetinforesourceuri) | string | The Uri of the resource set. |
+
+### Parameter: `dataSourceSetInfo.datasourceType`
+
+The data source type of the resource set.
+
+- Required: Yes
+- Type: string
+
+### Parameter: `dataSourceSetInfo.resourceID`
+
+The resource ID of the resource set.
+
+- Required: Yes
+- Type: string
+
+### Parameter: `dataSourceSetInfo.resourceLocation`
+
+The location of the data source set.
+
+- Required: Yes
+- Type: string
+
+### Parameter: `dataSourceSetInfo.resourceName`
+
+Unique identifier of the resource set in the context of parent.
+
+- Required: Yes
+- Type: string
+
+### Parameter: `dataSourceSetInfo.resourceType`
+
+The resource type of the data source set.
+
+- Required: Yes
+- Type: string
+
+### Parameter: `dataSourceSetInfo.resourceUri`
+
+The Uri of the resource set.
 
 - Required: Yes
 - Type: string

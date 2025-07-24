@@ -6,7 +6,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.36.177.2456",
-      "templateHash": "6763377575466601682"
+      "templateHash": "9177471434117533453"
     },
     "name": "Data Protection Backup Vault Backup Instances",
     "description": "This module deploys a Data Protection Backup Vault Backup Instance."
@@ -174,7 +174,7 @@
     "backupVault": {
       "existing": true,
       "type": "Microsoft.DataProtection/backupVaults",
-      "apiVersion": "2024-04-01",
+      "apiVersion": "2025-07-01",
       "name": "[parameters('backupVaultName')]"
     },
     "backupInstance_snapshotRG_rbac": {
@@ -184,7 +184,7 @@
       "name": "[guid(format('{0}-{1}-Disk-Snapshot-Contributor', resourceGroup().id, resourceId('Microsoft.DataProtection/backupVaults', parameters('backupVaultName'))))]",
       "properties": {
         "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '7efff54f-a5b4-42b5-a1c5-5411624893ce')]",
-        "principalId": "[reference('backupVault', '2024-04-01', 'full').identity.principalId]",
+        "principalId": "[reference('backupVault', '2025-07-01', 'full').identity.principalId]",
         "principalType": "ServicePrincipal"
       },
       "dependsOn": [
@@ -216,7 +216,7 @@
             "value": "[parameters('dataSourceInfo').resourceID]"
           },
           "principalId": {
-            "value": "[reference('backupVault', '2024-04-01', 'full').identity.principalId]"
+            "value": "[reference('backupVault', '2025-07-01', 'full').identity.principalId]"
           }
         },
         "template": {
